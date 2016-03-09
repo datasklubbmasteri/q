@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Quotes</title>
+    <link href="/stylesheets/main.css" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <h1>Quotes</h1>
+        <a href="/create">Add new quote</a>
+    </header>
+
+    {{#each quotes}}
+        <blockquote>
+            <p class="text">
+                {{this.text}}
+            </p>
+            <p class="context">
+                @ {{this.context}}
+            </p>
+            <p class="name">
+                — {{this.name}}
+            </p>
+        </blockquote>
+    {{/each}}
+</body>
+</html>
