@@ -2,6 +2,7 @@
   "name": "q",
   "version": "1.0.0",
   "description": "Keep track of funny things people say",
+  "repository": "https://github.com/datasklubbmasteri/q",
   "main": "app/app.coffee",
   "dependencies": {
     "express": "^4.13.4",
