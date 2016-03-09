@@ -5,6 +5,7 @@
   "repository": "https://github.com/datasklubbmasteri/q",
   "main": "app/app.coffee",
   "dependencies": {
+    "body-parser": "^1.15.0",
     "express": "^4.13.4",
     "hbs": "^4.0.0",
     "mongodb": "^2.1.7",
