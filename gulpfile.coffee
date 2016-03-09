@@ -41,15 +41,16 @@ gulp.task 'coffee', ->
     .pipe sync.stream()
 
 # Convenience task for running a one-off build
-gulp.task 'build', ['sass']
+gulp.task 'build', ['sass', 'coffee']
 
-gulp.task 'nodemon', (cb) ->
-  nodemon(script: 'app/app.coffee').on 'start', cb
+gulp.task 'nodemon', (callback) ->
+  nodemon(script: 'app/app.coffee').on 'start', () ->
 
 gulp.task 'sync', ->
   sync.init null,
     proxy: 'http://localhost:3000'
     port: 7000
+    open: false
 
 gulp.task 'watch', ->
     gulp.watch src.views, ['hbs']
