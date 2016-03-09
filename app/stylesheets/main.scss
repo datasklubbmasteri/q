@@ -1,9 +1,41 @@
 @import "bourbon";
 @import "neat";
 
+@import "variables";
+@import "forms";
+@import "links";
+
 body {
-    font-family: 'source sans pro';
+    font-family: $font;
     line-height: 1.6;
+    margin: 1em auto 5em;
+    background: $primary;
+    color: $white;
     width: 90%;
-    margin: 1em auto;
+    @include outer-container(1200px);
+    text-align: center;
+}
+
+// quotes
+blockquote {
+    margin: 0 auto;
+    @include span-columns(12);
+    @media(min-width: 800px) {
+        @include span-columns(6);
+        @include shift(3);
+    }
+    border-bottom: 2px solid $secondary;
+    p.text {
+        font-size: 2em;
+        font-style: italic;
+        quotes: "\201C" "\201D" "\2018" "\2019";
+    }
+}
+
+blockquote p.text:before {
+  content: open-quote;
+}
+
+blockquote p.text:after {
+  content: close-quote;
 }
