@@ -3,14 +3,16 @@ sass    = require 'gulp-sass'
 bourbon = require 'node-bourbon'
 neat    = require 'node-neat'
 plumber = require 'gulp-plumber'
+coffee  = require 'gulp-coffee'
 sync    = require 'browser-sync'
 nodemon = require 'gulp-nodemon'
 
 sync.create()
 
 src =
-  styles: 'app/**/*.scss'
   views: 'app/views/*.hbs'
+  styles: 'app/**/*.scss'
+  scripts: 'app/**/*.coffee'
 build = 'build'
 maps = 'maps'
 
@@ -31,6 +33,13 @@ gulp.task 'sass', ->
     .pipe gulp.dest build
     .pipe sync.stream()
 
+gulp.task 'coffee', ->
+  gulp.src src.scripts
+    .pipe plumber errorHandler: errorHandler
+    .pipe coffee()
+    .pipe gulp.dest build
+    .pipe sync.stream()
+
 # Convenience task for running a one-off build
 gulp.task 'build', ['sass']
 
@@ -43,7 +52,8 @@ gulp.task 'sync', ->
     port: 7000
 
 gulp.task 'watch', ->
-    gulp.watch src.styles, ['sass']
     gulp.watch src.views, ['hbs']
+    gulp.watch src.styles, ['sass']
+    gulp.watch src.scripts, ['coffee']
 
 gulp.task 'default', ['build', 'nodemon', 'sync', 'watch']
