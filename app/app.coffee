@@ -38,6 +38,9 @@ app.get '/create', (request, response) ->
 
 # Create a new quote
 app.post '/create', (request, response) ->
+  if !request.name? && !request.text? && !request.context?
+    response.json 'error': -1
+    return
   q =
     _id: new Date()
     name: request.body.name
